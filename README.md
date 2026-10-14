@@ -1,1 +1,8 @@
 # LAB3_POO
+
+El sistema de TecniHogar debe guardar información clave de las órdenes como código, cliente, horas, zona, estado y visitas, las cuadrillas con código, capacidad y si tienen certificación y las jornadas de trabajo, además de los ingresos generados. Con estos datos, el programa deja cotizar y registrar servicios, crear cuadrillas y armar jornadas. Al asignar órdenes a una jornada, el sistema valida reglas estrictas: no superar la capacidad de horas de los técnicos, asignar mantenimientos de aire acondicionado únicamente a personal certificado, y rechazar códigos repetidos o números negativos.
+
+Las decisiones de cobro, tiempo de espera y límite de visitas se hacen mediante polimorfismo,
+que cada tipo de servicio calcula sus propios datos internamente, evitando usar condicionales. A medida que los técnicos trabajan, las órdenes cambian de estado: nacen pendientes, pasan a "en atención" al iniciar la jornada, y terminan "completadas", o bien "canceladas" si superan su límite de visitas fallidas. Las jornadas también avanzan desde su "preparación" hasta quedar "cerradas".
+
+El diseño, hacer que la instalación eléctrica certificada herede de la instalación normal es la opción más eficiente, ya que permite reutilizar toda la compleja fórmula matemática de cobro por puntos y horas, sumando únicamente el recargo del certificado y garantía sin duplicar código. Gracias a esta arquitectura, si la empresa decide agregar un nuevo servicio en el futuro como paneles solares, el impacto será mínimo; bastará con programar una nueva clase con sus propias reglas, sin necesidad de modificar el menú, las jornadas o los reportes financieros.
